@@ -102,7 +102,7 @@ PODS:
     - Folly (= 2020.01.13.00)
     - glog
     - React-Core/Default
-    - React-cxxreact (= 0.63.3)g
+    - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
     - React-jsiexecutor (= 0.63.3)
     - Yoga
