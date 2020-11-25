@@ -4,5 +4,8 @@
   "private": true,
   "dependencies": {
     "react-native-paper": "^4.4.1"
+  },
+  "devDependencies": {
+    "babel-plugin-optional-require": "^0.3.1"
   }
 }

@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { Snackbar } from 'react-native-paper';
 
-
 import { AppHeader } from './AppHeader';
 import UserInput from './UserInput';
 import Transformations from './Transformations';
