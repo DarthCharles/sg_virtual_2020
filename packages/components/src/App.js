@@ -1,30 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { AppHeader } from './AppHeader';
 
-const App: () => React$Node = () => {
+export function App() {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -32,7 +18,7 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
+          <AppHeader />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
@@ -40,47 +26,53 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Monorepo</Text>
+              <Text style={styles.sectionTitle}>
+                Code sharing using Monorepo
+              </Text>
               <Text style={styles.sectionDescription}>
-                This code is shared between mobile + web!
+                Edit{' '}
+                <Text style={styles.highlight}>
+                  packages/components/App.tsx
+                </Text>{' '}
+                to change this screen and then come back to see your edits (in
+                the phone or the browser).
               </Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
+              <Text style={styles.sectionTitle}>
+                Web support via react-native-web
+              </Text>
               <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
+                Run{' '}
+                <Text style={styles.highlight}>yarn workspace web start</Text>{' '}
+                to open this app in the browser.
+              </Text>
+              <Text style={styles.sectionDescription}>
+                It will share the same code from mobile, unless you create
+                platform-specific files using the{' '}
+                <Text style={styles.highlight}>.web.tsx</Text> extension (also
+                supports <Text style={styles.highlight}>.android</Text>,{' '}
+                <Text style={styles.highlight}>.ios</Text>,{' '}
+                <Text style={styles.highlight}>.native</Text>, etc).
               </Text>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: 'white',
   },
   engine: {
     position: 'absolute',
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: 'white',
   },
   sectionContainer: {
     marginTop: 32,
@@ -89,19 +81,19 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black,
+    color: 'black',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.dark,
+    color: 'gray',
   },
   highlight: {
     fontWeight: '700',
   },
   footer: {
-    color: Colors.dark,
+    color: 'gray',
     fontSize: 12,
     fontWeight: '600',
     padding: 4,
@@ -109,5 +101,3 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-
-export default App;
