@@ -8,22 +8,21 @@ import {
   View,
 } from 'react-native';
 
-import { AppHeader } from './AppHeader';
+import { Appbar } from 'react-native-paper';
+
+import { Footer } from './Footer';
 
 export function App() {
   return (
-    <>
+    <React.Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <AppHeader />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
+          <Appbar.Header>
+            <Appbar.Content title="Code sharing using Monorepo" />
+          </Appbar.Header>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
@@ -57,9 +56,10 @@ export function App() {
               </Text>
             </View>
           </View>
+          <Footer />
         </ScrollView>
       </SafeAreaView>
-    </>
+    </React.Fragment>
   );
 }
 
