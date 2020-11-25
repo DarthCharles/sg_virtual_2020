@@ -7,10 +7,17 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Snackbar } from 'react-native-paper';
+
 
 import { AppHeader } from './AppHeader';
+import UserInput from './UserInput';
+import Transformations from './Transformations';
 
 export function App() {
+  const [text, setText] = React.useState('');
+  const [visibleSnackbar, setVisibleSnackbar] = React.useState(false);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -56,6 +63,25 @@ export function App() {
                 <Text style={styles.highlight}>.native</Text>, etc).
               </Text>
             </View>
+            <UserInput updateText={setText} />
+            <Transformations
+              setVisibleSnackbar={() => {
+                setVisibleSnackbar(true);
+              }}
+              targetText={text}
+            />
+            <Snackbar
+              duration={2000}
+              visible={visibleSnackbar}
+              onDismiss={() => setVisibleSnackbar(false)}
+              action={{
+                label: 'OK',
+                onPress: () => {
+                  setVisibleSnackbar(false);
+                },
+              }}>
+              Text has been copied to clipboard!
+            </Snackbar>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -99,5 +125,13 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 20,
+    paddingTop: 20,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
 });
