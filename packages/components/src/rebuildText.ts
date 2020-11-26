@@ -5,6 +5,7 @@ const rebuildText = (
 ): string => {
   let resultText = '';
 
+  // @ts-ignore
   [...text].forEach((character) => {
     // non a-z? append and return fast
     if (!character.match(/[a-z]/i)) {
