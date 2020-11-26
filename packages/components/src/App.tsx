@@ -10,7 +10,6 @@ import {
 import { Snackbar } from 'react-native-paper';
 
 import { UserInput } from './UserInput';
-// @ts-ignore
 import { Transformations } from './Transformations';
 import { Appbar } from 'react-native-paper';
 
