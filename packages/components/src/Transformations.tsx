@@ -15,17 +15,18 @@ const Transformations: React.FC<TransformationsProps> = ({
   targetText,
 }) => (
   <View>
-    {transformations.map((transformation) => (
-      <>
+    {transformations.map((transformation, index) => (
+      <React.Fragment key={`fragment-${index}`}>
         <TextTransformer
+          key={`transformation-${index}`}
           displaySnackbar={setVisibleSnackbar}
           label={transformation.label}
           sampleLowerCaseA={transformation.sampleLowerCaseA}
           sampleUpperCaseA={transformation.sampleUpperCaseA}
           targetText={targetText}
         />
-        <Divider style={styles.divider} />
-      </>
+        <Divider key={`divider-${index}`} style={styles.divider} />
+      </React.Fragment>
     ))}
   </View>
 );
