@@ -10,6 +10,7 @@ export const UserInput: React.FC<UserInputProps> = ({ updateText }) => {
   const [currentText, setCurrentText] = useState('');
 
   return (
+    // eslint-disable-next-line react-native/no-inline-styles
     <View style={{ paddingTop: 10 }}>
       <TextInput
         label={'Your Text...'}
