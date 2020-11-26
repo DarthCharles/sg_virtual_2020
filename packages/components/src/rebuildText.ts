@@ -1,4 +1,8 @@
-const rebuildText = (text, lowerCaseDelta, upperCaseDelta) => {
+const rebuildText = (
+  text: string,
+  lowerCaseDelta: number,
+  upperCaseDelta: number,
+): string => {
   let resultText = '';
 
   [...text].forEach((character) => {

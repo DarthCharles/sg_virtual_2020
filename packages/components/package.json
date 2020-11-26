@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "react-native-paper": "^4.4.1"
+    "react-native-paper": "^4.4.1",
+    "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {
-    "babel-plugin-optional-require": "^0.3.1"
+    "@types/react-native": "^0.63.37"
   }
 }

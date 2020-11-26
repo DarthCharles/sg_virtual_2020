@@ -6,7 +6,11 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 // our packages that will now be included in the CRA build step
-const appIncludes = [resolveApp('src'), resolveApp('../components/src')];
+const appIncludes = [
+  resolveApp('src'),
+  resolveApp('../components/src'),
+  resolveApp('../../node_modules/react-native-vector-icons'),
+];
 
 module.exports = function override(config, env) {
   // allow importing from outside of src folder
@@ -21,8 +25,20 @@ module.exports = function override(config, env) {
   );
 
   config.plugins.push(
-    new webpack.DefinePlugin({__DEV__: env !== 'production'}),
+    new webpack.DefinePlugin({ __DEV__: env !== 'production' }),
   );
-
+  (() => {
+    const filePath = require.resolve(
+      'react-native-vector-icons/lib/tab-bar-item-ios.js',
+    );
+    const code = fs.readFileSync(filePath).toString();
+    fs.writeFileSync(
+      filePath,
+      code.replace(
+        "import { TabBarIOS } from './react-native';",
+        'const TabBarIOS = { Item: () => null };',
+      ),
+    );
+  })();
   return config;
 };

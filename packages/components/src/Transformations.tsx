@@ -5,7 +5,15 @@ import { Divider } from 'react-native-paper';
 import TextTransformer from './TextTransformer';
 import transformations from './transformationCatalog';
 
-const Transformations = ({ setVisibleSnackbar, targetText }) => (
+interface TransformationsProps {
+  setVisibleSnackbar: () => void;
+  targetText: string;
+}
+
+const Transformations: React.FC<TransformationsProps> = ({
+  setVisibleSnackbar,
+  targetText,
+}) => (
   <View>
     {transformations.map((transformation) => (
       <>
@@ -28,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Transformations;
+export { Transformations };

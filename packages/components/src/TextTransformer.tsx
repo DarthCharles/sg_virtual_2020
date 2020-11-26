@@ -1,8 +1,16 @@
 import React from 'react';
-import { Clipboard, StyleSheet, Text, View } from 'react-native';
-import { Button, Card, Snackbar } from 'react-native-paper';
+import { Clipboard, StyleSheet, Text } from 'react-native';
+import { Button, Card } from 'react-native-paper';
 
 import rebuildText from './rebuildText';
+
+interface TextTransformerProps {
+  displaySnackbar: () => void;
+  label: string;
+  sampleLowerCaseA: string;
+  sampleUpperCaseA: string;
+  targetText: string;
+}
 
 const styles = StyleSheet.create({
   title: {
@@ -10,15 +18,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const copyToClipboard = async (text, displaySnackbar) => {
+const copyToClipboard = async (text: string, displaySnackbar: () => void) => {
   await Clipboard.setString(text);
   displaySnackbar();
 };
 
-const getCodePointDelta = (sample, target) =>
+const getCodePointDelta = (sample: string, target: string) =>
   (sample.codePointAt(0) || 0) - (target.codePointAt(0) || 0);
 
-const TextTransformer = ({
+const TextTransformer: React.FC<TextTransformerProps> = ({
   displaySnackbar,
   label,
   sampleLowerCaseA,
