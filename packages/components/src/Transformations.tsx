@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { Divider } from 'react-native-paper';
 
 import TextTransformer from './TextTransformer';
@@ -14,23 +14,36 @@ const Transformations: React.FC<TransformationsProps> = ({
   setVisibleSnackbar,
   targetText,
 }) => (
-  <View>
-    {transformations.map((transformation) => (
-      <>
-        <TextTransformer
-          displaySnackbar={setVisibleSnackbar}
-          label={transformation.label}
-          sampleLowerCaseA={transformation.sampleLowerCaseA}
-          sampleUpperCaseA={transformation.sampleUpperCaseA}
-          targetText={targetText}
-        />
-        <Divider style={styles.divider} />
-      </>
-    ))}
+  <View style={styles.container}>
+    {transformations.map(
+      ({ label, sampleLowerCaseA, sampleUpperCaseA }, index) => (
+        <React.Fragment key={`${label}_${index}`}>
+          <TextTransformer
+            displaySnackbar={setVisibleSnackbar}
+            label={label}
+            sampleLowerCaseA={sampleLowerCaseA}
+            sampleUpperCaseA={sampleUpperCaseA}
+            targetText={targetText}
+          />
+          <Divider style={styles.divider} />
+        </React.Fragment>
+      ),
+    )}
   </View>
 );
 
 const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      ios: {},
+      android: {},
+      default: {
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+      },
+    }),
+  },
   divider: {
     marginBottom: 5,
   },

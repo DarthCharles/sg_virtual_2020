@@ -26,8 +26,8 @@ export const Footer = () => (
 
 const styles = StyleSheet.create({
   footerContainer: {
-    marginHorizontal: 24,
-    marginVertical: 10,
+    alignItems: 'center',
+    paddingVertical: 35,
   },
   footerParagraph: {
     fontSize: 16,

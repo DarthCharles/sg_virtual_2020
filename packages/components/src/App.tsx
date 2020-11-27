@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -10,9 +11,8 @@ import { Snackbar } from 'react-native-paper';
 
 import { UserInput } from './UserInput';
 import { Transformations } from './Transformations';
-import { Appbar } from 'react-native-paper';
-
 import { Footer } from './Footer';
+import { Header } from './Header';
 
 export function App() {
   const [text, setText] = React.useState('');
@@ -25,9 +25,7 @@ export function App() {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Appbar.Header>
-            <Appbar.Content title="Code sharing using Monorepo" />
-          </Appbar.Header>
+          <Header />
           <View style={styles.body}>
             <UserInput updateText={setText} />
             <Transformations
@@ -36,22 +34,22 @@ export function App() {
               }}
               targetText={text}
             />
-            <Snackbar
-              duration={2000}
-              visible={visibleSnackbar}
-              onDismiss={() => setVisibleSnackbar(false)}
-              action={{
-                label: 'OK',
-                onPress: () => {
-                  setVisibleSnackbar(false);
-                },
-              }}>
-              Text has been copied to clipboard!
-            </Snackbar>
+            <Footer />
           </View>
-          <Footer />
         </ScrollView>
       </SafeAreaView>
+      <Snackbar
+        duration={2000}
+        visible={visibleSnackbar}
+        onDismiss={() => setVisibleSnackbar(false)}
+        action={{
+          label: 'OK',
+          onPress: () => {
+            setVisibleSnackbar(false);
+          },
+        }}>
+        Text has been copied to clipboard!
+      </Snackbar>
     </React.Fragment>
   );
 }
@@ -61,6 +59,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   body: {
+    ...Platform.select({
+      ios: {},
+      android: {},
+      default: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+      },
+    }),
     backgroundColor: 'white',
   },
   footer: {
