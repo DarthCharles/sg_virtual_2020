@@ -14,4 +14,7 @@ This might take a while.
 
 ## Mobile
 
-TODO
+`yarn workspace mobile start`
+
+
+🎉 you should now be seeing your application running.
